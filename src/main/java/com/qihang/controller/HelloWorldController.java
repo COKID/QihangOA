@@ -10,6 +10,6 @@ public class HelloWorldController {
         return "Hello World";
     }
 }
-class Hello{
+class Test{
 
 }
