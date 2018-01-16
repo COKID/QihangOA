@@ -12,7 +12,7 @@ public class LibraryService {
     @Autowired
     LibraryMapper libraryMapper;
 
-    public Library getAll(){
-       return  libraryMapper.selectByPrimaryKey(1);
+    public List<Library> getAll(){
+       return  libraryMapper.selectByExample(null);
     }
 }

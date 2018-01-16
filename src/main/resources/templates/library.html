@@ -5,146 +5,107 @@
   <title>Qihang图书</title>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/menu.js"></script>
+    <link rel="stylesheet" href="css/bootstrap-Slate.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/font-awesome.css">
 </head>
 <body>
-<%--新增课程模态框--%>
-<div class="modal fade" id="studentInsertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--新增模态框-->
+<div class="modal fade" id="bookInsertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document" style="width:550px">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">新增学生信息</h4>
+                <h4 class="modal-title">新增图书信息</h4>
             </div>
             <div class="modal-body">
-
                 <form class="form-horizontal">
-
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">中方学号</label>
+                        <label class="col-sm-2 control-label">书名</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="cid_insert_input" name="cid">
+                            <input type="text" class="form-control" id="bookname_insert_input" name="bookname">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">外方学号</label>
+                        <label class="col-sm-2 control-label">作者</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="fid_insert_input" name="fid">
+                            <input type="text" class="form-control" id="author_insert_input" name="author">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">姓名</label>
+                        <label class="col-sm-2 control-label">出版社</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="cName_insert_input" name="cName">
+                            <input type="text" class="form-control" id="publisher_insert_input" name="publisher">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">出版日期</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="publishDate_insert_input" name="publishDate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">总数</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="totalNum_insert_input" name="totalNum">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">姓名拼音</label>
+                        <label class="col-sm-2 control-label">单价</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="fName_insert_input" name="fName">
+                            <input type="text" class="form-control" id="price_insert_input" name="price">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">姓(拼音)</label>
+                        <label class="col-sm-2 control-label">发票号</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="lastName_insert_input" name="lastName">
+                            <input type="text" class="form-control" id="billNum_insert_input" name="billNum">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">名(拼音)</label>
+                        <label class="col-sm-2 control-label">入库日期</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="firstName_insert_input" name="firstName">
+                            <input type="text" class="form-control" id="registerDate_insert_input" name="registerDate">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">性别</label>
+                        <label class="col-sm-2 control-label">购置人</label>
                         <div class="col-sm-10">
-                            <input type="radio" name="gender" id="gender0" value="0">男
-                            <input type="radio" name="gender" id="gender1" value="1">女
+                            <input type="text" class="form-control" id="buyPeople_insert_input" name="buyPeople">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">身份证号</label>
+                        <label class="col-sm-2 control-label">经办人</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="idNo_insert_input" name="idNo">
+                            <input type="date" class="form-control" id="dealPeople_insert_input" name="dealPeople">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">出生日期</label>
+                        <label class="col-sm-2 control-label">可借数量</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" id="birthday_insert_input" name="birthday">
+                            <select class="form-control" id="available_insert_input" name="available"></select>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">出生地</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="birthplace_insert_input" name="birthplace"></select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">考生号</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="candidateNo_insert_input" name="candidateNo">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">民族</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="nation_insert_input" name="nation"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">政治面貌</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="political_insert_input" name="politicalStatus"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">学籍状态</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="status_insert_input" name="status"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">奖惩情况</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="rewardsPenalties_insert_input" name="rewardsPenalties">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">家庭住址</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="homeAddress_insert_input" name="homeAddress">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">家庭电话</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="homeTel_insert_input" name="homeTel">
-                        </div>
-                    </div>
-
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="student_insert_btn">添加</button>
+                <button type="button" class="btn btn-primary" id="book_insert_btn">添加</button>
             </div>
         </div>
     </div>
 </div>
-<!--编辑课程模态框-->
-<div class="modal fade" id="studentUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<!--编辑模态框-->
+<div class="modal fade" id="bookUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document" style="width:550px">
         <div class="modal-content">
             <div class="modal-header">
@@ -153,210 +114,124 @@
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
-
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">中方学号</label>
+                        <label class="col-sm-2 control-label">书名</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="cid_update_input" name="cid">
+                            <input type="text" class="form-control" id="bookname_update_input" name="bookname">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">外方学号</label>
+                        <label class="col-sm-2 control-label">作者</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="fid_update_input" name="fid">
+                            <input type="text" class="form-control" id="author_update_input" name="author">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">姓名</label>
+                        <label class="col-sm-2 control-label">出版社</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="cName_update_input" name="cName">
+                            <input type="text" class="form-control" id="publisher_update_input" name="publisher">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">出版日期</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="publishDate_update_input" name="publishDate">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">总数</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="totalNum_update_input" name="totalNum">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">姓名拼音</label>
+                        <label class="col-sm-2 control-label">单价</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="fName_update_input" name="fName">
+                            <input type="text" class="form-control" id="price_update_input" name="price">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">姓(拼音)</label>
+                        <label class="col-sm-2 control-label">发票号</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="lastName_update_input" name="lastName">
+                            <input type="text" class="form-control" id="billNum_update_input" name="billNum">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">名(拼音)</label>
+                        <label class="col-sm-2 control-label">入库日期</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="firstName_update_input" name="firstName">
+                            <input type="text" class="form-control" id="registerDate_update_input" name="registerDate">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">性别</label>
+                        <label class="col-sm-2 control-label">购置人</label>
                         <div class="col-sm-10">
-                            <input type="radio" name="gender" id="gender0" value="0">男
-                            <input type="radio" name="gender" id="gender1" value="1">女
+                            <input type="text" class="form-control" id="buyPeople_update_input" name="buyPeople">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">身份证号</label>
+                        <label class="col-sm-2 control-label">经办人</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="idNo_update_input" name="idNo">
+                            <input type="date" class="form-control" id="dealPeople_update_input" name="dealPeople">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">出生日期</label>
+                        <label class="col-sm-2 control-label">可借数量</label>
                         <div class="col-sm-10">
-                            <input type="input" class="form-control" id="birthday_update_input" name="birthday">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">出生地</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="birthplace_update_input" name="birthplace"></select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">考生号</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="candidateNo_update_input" name="candidateNo">
-                        </div>
-                    </div>
-                    <div class="form-group" >
-                        <label class="col-sm-2 control-label">民族</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="nation_update_input" name="nation"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">政治面貌</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="political_update_input" name="politicalStatus"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">学籍状态</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="status_update_input" name="status"></select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">奖惩情况</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="rewardsPenalties_update_input" name="rewardsPenalties">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">家庭住址</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="homeAddress_update_input" name="homeAddress">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">家庭电话</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="homeTel_update_input" name="homeTel">
+                            <select class="form-control" id="available_update_input" name="available"></select>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="student_update_btn">保存</button>
+                <button type="button" class="btn btn-primary" id="book_update_btn">保存</button>
             </div>
         </div>
     </div>
 </div>
 
-
 <!-- 搭建显示页面 -->
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>学生数据</h1>
+            <h1>Qihang图书库</h1>
         </div>
     </div>
-
-    <%--查询表单和新增按钮--%>
-    <div class="row" id="searchForm1"style="margin:10px 0 15px 0">
-        <div class="col-md-2">
-            <label>学号</label>
-            <input type="text" class="form-control" id="cid_search_input" name="cid">
-        </div>
-        <div class="col-md-2">
-            <label>外方学号</label>
-            <input type="text" class="form-control" id="fid_search_input" name="fid">
-        </div>
-        <div class="col-md-2">
-            <label>姓名</label>
-            <input type="text" class="form-control" id="cName_search_input" name="cName">
-        </div>
-    </div>
-    <div class="row" id="searchForm2" style="margin:10px 0 15px 0">
-        <div class="col-md-2">
-            <label>出生地</label>
-            <select class="form-control" id="birthplace_search_input" name="birthplace">
-                <option value="">选择出生地</option>
-            </select>
-        </div>
+    <div class="row" id="searchForm"style="margin:10px 0 15px 0">
         <div class="col-md-4">
-            <label>民族</label>
-            <select class="form-control" id="nation_search_input" name="nation">
-                <option value="">选择民族</option>
-            </select>
+            <input type="text" class="form-control" id="bookname_search_input" name="bookname" placeholder="图书名"/>
         </div>
-        <div class="col-md-2">
-            <label>政治面貌</label>
-            <select class="form-control" id="politicalStatus_search_input" name="politicalStatus">
-                <option value="">选择政治面貌</option>
-            </select>
-        </div>
-        <div class="col-md-2">
-            <label>学籍状态</label>
-            <select class="form-control" id="status_search_input" name="status">
-                <option value="">选择学籍状态</option>
-            </select>
-        </div>
-
         <div class="col-md-1">
-            <button type="submit" class="btn btn-default" id="student_search_btn" style="margin:25px 0 15px 0">查询</button>
+            <button type="submit" class="btn btn-default" id="book_search_btn">查询</button>
         </div>
-
-        <div class="col-md-1 ">
-            <button class="btn btn-primary" id="studentAdd" style="margin:25px 0 15px 0">新增</button>
+        <div class="col-md-1 col-md-offset-6">
+            <button class="btn btn-primary" id="bookAdd">新增</button>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-bordered" id="student_table">
+            <table class="table table-bordered" id="book_table">
                 <thead>
                 <tr>
-                    <th>中方学号</th>
-                    <th>外方学号</th>
-                    <th>姓名</th>
-                    <th>姓名拼音</th>
-                    <th>姓(拼音)</th>
-                    <th>名(拼音)</th>
-                    <th>性别</th>
-                    <th>身份证号</th>
-                    <th>出生日期</th>
-                    <th>出生地</th>
-                    <th>考生号</th>
-                    <th>民族</th>
-                    <th>政治面貌</th>
-                    <th>学籍状态</th>
-                    <th>奖惩情况</th>
-                    <th>家庭住址</th>
-                    <th>家庭电话</th>
+                    <th>书名</th>
+                    <th>作者</th>
+                    <th>出版社</th>
+                    <th>出版日期</th>
+                    <th>总数目</th>
+                    <th>单价</th>
+                    <th>发票号</th>
+                    <th>登记日期</th>
+                    <th>购置人</th>
+                    <th>经办人</th>
+                    <th>可借数目</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -381,23 +256,18 @@
 
 
 <script type="text/javascript">
-
-
     $(function(){
-        //构建完整的编辑新增模态框
-        build_page_select();
-        //去首页
         to_page(1);
     });
     function to_page(pn){
         $.ajax({
-            url:"students",
+            url:"book",
             data:"pn="+pn,
             type:"GET",
             success:function(result){
-                //console.log(result);
-                //1、解析并显示学生数据
-                build_student_table(result);
+                console.log(result);
+                //1、解析并显示数据
+                build_book_table(result);
                 //2、解析并显示分页信息
                 build_page_info(result);
                 //3、解析显示分页条数据
@@ -405,66 +275,58 @@
             }
         });
     }
-    function build_student_table(result){
+    function build_book_table(result){
         //清空table表格
-        $("#student_table").find("tbody").empty();
-        var students = result.jsondata.pageInfo.list;
-        $.each(students,function(index,item){
-            var cid = $("<td></td>").append(item.cid);
-            var fid = $("<td></td>").append(item.fid);
-            var cName = $("<td></td>").append(item.cName);
-            var fName = $("<td></td>").append(item.fName);
-            var lastName = $("<td></td>").append(item.lastName);
-            var firstName = $("<td></td>").append(item.firstName);
-            var gender = $("<td></td>").append(item.mean_gender.gender);
-            var idNo = $("<td></td>").append(item.idNo);
-            var formatDate = new Date(item.birthday);
-            var birthday = $("<td></td>").append(formatDate.getFullYear()+"-"
-                +(formatDate.getMonth()+1)+"-"
-                +formatDate.getDate());
-            var birthplace = $("<td></td>").append(item.mean_birthplace.ch);
-            var candidateNo = $("<td></td>").append(item.candidateNo);
-            var nation = $("<td></td>").append(item.mean_nation==null?"":item.mean_nation.nation);
-            var politicalStatus = $("<td></td>").append(item.mean_political.political);
-
-            var status = $("<td></td>").append(item.mean_status==null?"":item.mean_status.status);
-            var rewardsPenalties = $("<td></td>").append(item.rewardsPenalties);
-            var homeAddress = $("<td></td>").append(item.homeAddress);
-            var homeTel = $("<td></td>").append(item.homeTel);
+        $("#book_table").find("tbody").empty();
+        var books = result.jsondata.pageInfo.list;
+        $.each(books,function(index,item){
+            var bookname = $("<td></td>").append(item.bookname);
+            var author = $("<td></td>").append(item.author);
+            var publisher = $("<td></td>").append(item.publisher);
+            var publishDate = $("<td></td>").append(item.publishDate);
+            var totalNum = $("<td></td>").append(item.totalNum);
+            var price = $("<td></td>").append(item.price);
+            var billNum = $("<td></td>").append(item.billNum);
+            var registerDate = $("<td></td>").append(item.registerDate);
+            var buyPeople = $("<td></td>").append(item.buyPeople);
+            var dealPeople = $("<td></td>").append(item.dealPeople);
+            var available =$("<td></td>").append(item.available);
 
             var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn")
                 .append($("<span></span>").addClass("glyphicon glyphicon-pencil")).append("编辑");
-            //为编辑按钮添加一个自定义的属性，来表示当前学生id
-            editBtn.attr("edit-id",item.cid);
+            editBtn.attr("edit-id",item.bookname);
+
             var delBtn =  $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
                 .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("删除");
-            //为删除按钮添加一个自定义的属性来表示当前删除的学生id
-            delBtn.attr("del-id",item.cid);
-            var btnTd = $("<td></td>").append(editBtn).append(" ").append(delBtn);
+            delBtn.attr("del-id",item.bookname);
+
+            var borrowBtn =  $("<button></button>").addClass("btn btn-success btn-sm borrow_btn")
+                .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("借阅");
+            borrowBtn.attr("borrow-id",item.bookname);
+
+            var returnBtn =  $("<button></button>").addClass("btn btn-info btn-sm return_btn")
+                .append($("<span></span>").addClass("glyphicon glyphicon-trash")).append("归还");
+            delBtn.attr("return-id",item.bookname);
+
+
+            var btnTd = $("<td></td>").append(editBtn).append(" ").append(delBtn).append(" ").append(borrowBtn).append(" ").append(returnBtn);
             //append方法执行完成以后还是返回原来的元素
             $("<tr></tr>")
-                .append(cid)
-                .append(fid)
-                .append(cName)
-                .append(fName)
-                .append(lastName)
-                .append(firstName)
-                .append(gender)
-                .append(idNo)
-                .append(birthday)
-                .append(birthplace)
-                .append(candidateNo)
-                .append(nation)
-                .append(politicalStatus)
-                .append(status)
-                .append(rewardsPenalties)
-                .append(homeAddress)
-                .append(homeTel)
+                .append(bookname)
+                .append(author)
+                .append(publisher)
+                .append(publishDate)
+                .append(totalNum)
+                .append(price)
+                .append(billNum)
+                .append(registerDate)
+                .append(buyPeople)
+                .append(dealPeople)
+                .append(available)
                 .append(btnTd)
-                .appendTo("#student_table tbody");
+                .appendTo("#book_table tbody");
         });
     }
-
     //解析显示分页信息
     var totalRecord,currentPage;//保存总记录数和当前页码
     function build_page_info(result){
@@ -475,323 +337,285 @@
         totalRecord = result.jsondata.pageInfo.total;
         currentPage = result.jsondata.pageInfo.pageNum;
     }
-    //
-    //    //解析显示分页条，点击分页要能去下一页....
-    //    function build_page_nav(result) {
-    //        //page_nav_area
-    //        $("#page_nav_area").empty();
-    //        var ul = $("<ul></ul>").addClass("pagination");
-    //
-    //        //构建元素
-    //        var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href", "#"));
-    //        var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;"));
-    //        if (result.jsondata.pageInfo.hasPreviousPage === false) {//没有上一页将第一页和上一页设为不可用
-    //            firstPageLi.addClass("disabled");
-    //            prePageLi.addClass("disabled");
-    //        } else {
-    //            //为元素添加点击翻页的事件
-    //            firstPageLi.click(function () {
-    //                to_page(1);
-    //            });
-    //            prePageLi.click(function () {
-    //                to_page(result.jsondata.pageInfo.pageNum - 1);
-    //            });
-    //        }
-    //        var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;"));
-    //        var lastPageLi = $("<li></li>").append($("<a></a>").append("末页").attr("href","#"));
-    //        if(result.jsondata.pageInfo.hasNextPage === false){//没有下一页
-    //            nextPageLi.addClass("disabled");
-    //            lastPageLi.addClass("disabled");
-    //        }else{
-    //            nextPageLi.click(function(){
-    //                to_page(result.jsondata.pageInfo.pageNum +1);
-    //            });
-    //            lastPageLi.click(function(){
-    //                to_page(result.jsondata.pageInfo.pages);
-    //            });
-    //        }
-    //
-    //        //添加首页和前一页 的提示
-    //        ul.append(firstPageLi).append(prePageLi);
-    //        //1,2，3遍历给ul中添加页码提示
-    //        $.each(result.jsondata.pageInfo.navigatepageNums,function(index,item){
-    //            var numLi = $("<li></li>").append($("<a></a>").append(item));
-    //            if(result.jsondata.pageInfo.pageNum === item){
-    //                numLi.addClass("active");
-    //            }
-    //            numLi.click(function(){
-    //                to_page(item);
-    //            });
-    //            ul.append(numLi);
-    //        });
-    //        //添加下一页和末页 的提示
-    //        ul.append(nextPageLi).append(lastPageLi);
-    //
-    //        //把ul加入到nav
-    //        var navEle = $("<nav></nav>").append(ul);
-    //        navEle.appendTo("#page_nav_area");
-    //    }
+    //解析显示分页条，点击分页要能去下一页....
+    function build_page_nav(result) {
+            //page_nav_area
+            $("#page_nav_area").empty();
+            var ul = $("<ul></ul>").addClass("pagination");
 
-    //构建编辑新增模态框中的复选框
-    function build_page_select(){
-        $.ajax({
-            url:"students/selectList",
-            type:"GET",
-            success:function(result){
-                build_page_Birthplace(result);
-                build_page_Nation(result);
-                build_page_Political(result);
-                build_page_Status(result);
-            }
-        })
-    }
-
-    //点击编辑弹出编辑模态框
-    $(document).on("click",".edit_btn",function(){
-
-        //2、查出学生信息显示在模态框
-        getstudent($(this).attr("edit-id"));
-
-        //3、把学生的id传递给模态框的更新按钮
-        $("#student_update_btn").attr("edit-id",$(this).attr("edit-id"));
-        $("#studentUpdateModal").modal({
-            backdrop:"static"
-        });
-    });
-
-    //回显student信息
-    function getstudent(id){
-        $.ajax({
-            url:"students/"+id,
-            type:"GET",
-            dataType:"json",
-            success:function(result){
-                var studentData = result.jsondata.studentData;
-                $("#cid_update_input").val(studentData.cid);
-                $("#fid_update_input").val(studentData.fid);
-                $("#cName_update_input").val(studentData.cName);
-                $("#fName_update_input").val(studentData.fName);
-                $("#lastName_update_input").val(studentData.lastName);
-                $("#firstName_update_input").val(studentData.firstName);
-                $("#studentUpdateModal input[name=gender]").val([studentData.gender]);
-                $("#idNo_update_input").val(studentData.idNo);
-                var birthday=new Date(studentData.birthday)
-                $("#birthday_update_input").val(birthday.getFullYear()+"-"
-                    +(birthday.getMonth()+1)+"-"
-                    +birthday.getDate());
-
-                $("#birthplace_update_input").val(studentData.birthplace);
-                $("#candidateNo_update_input").val(studentData.candidateNo);
-                $("#nation_update_input").val(studentData.nation);
-                $("#political_update_input").val(studentData.politicalStatus);
-                $("#status_update_input").val(studentData.status);
-                $("#rewardsPenalties_update_input").val(studentData.rewardsPenalties);
-                $("#homeAddress_update_input").val(studentData.homeAddress);
-                $("#homeTel_update_input").val(studentData.homeTel);
-
-            }
-        });
-    }
-
-    //点击保存更新
-    $("#student_update_btn").click(function(){
-
-        $.ajax({
-            url:"students/"+$(this).attr("edit-id"),
-            type:"PUT",
-            dataType:"json",
-            data:$("#studentUpdateModal").find("form").serialize(),
-            success:function(result){
-                alert(result.msg);
-                //1、关闭对话框
-                $("#studentUpdateModal").modal("hide");
-                //2、回到本页面
-                to_search_page(currentPage);
-            }
-        });
-    });
-
-    //删除
-    $(document).on("click",".delete_btn",function(){
-        //1、弹出是否确认删除对话框
-        var studentid = $(this).attr("del-id");
-        if(confirm("确认删除"+studentid+"的学生信息吗？此操作不可逆")){
-            //确认，发送ajax请求删除即可
-            $.ajax({
-                url:"students/"+studentid,
-                type:"DELETE",
-                success:function(result){
-                    alert(result.msg);
-                    //回到本页
-                    to_page(currentPage);
-                },
-                error:function(){
-                    alert("删除失败请重试")
-                }
-            });
-        }
-    });
-
-    //点击新增按钮弹出模态框。
-    $("#studentAdd").click(function(){
-        //弹出模态框
-        $("#studentInsertModal").modal({
-            backdrop:"static"
-        });
-    });
-
-    //点击添加，保存新课程。
-    $("#student_insert_btn").click(function(){
-        console.log($("#studentInsertModal").find("form").serialize())
-        //2、发送ajax请求保存员工
-        $.ajax({
-            url:"students",
-            type:"POST",
-            data:$("#studentInsertModal").find("form").serialize(),
-            success:function(result){
-                //alert(result.msg);
-                if(result.code === 200){
-                    alert("添加成功");
-                    //1、关闭模态框
-                    $("#studentInsertModal").modal('hide');
+            //构建元素
+            var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href", "#"));
+            var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;"));
+            if (result.jsondata.pageInfo.hasPreviousPage === false) {//没有上一页将第一页和上一页设为不可用
+                firstPageLi.addClass("disabled");
+                prePageLi.addClass("disabled");
+            } else {
+                //为元素添加点击翻页的事件
+                firstPageLi.click(function () {
                     to_page(1);
+                });
+                prePageLi.click(function () {
+                    to_page(result.jsondata.pageInfo.pageNum - 1);
+                });
+            }
+            var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;"));
+            var lastPageLi = $("<li></li>").append($("<a></a>").append("末页").attr("href","#"));
+            if(result.jsondata.pageInfo.hasNextPage === false){//没有下一页
+                nextPageLi.addClass("disabled");
+                lastPageLi.addClass("disabled");
+            }else{
+                nextPageLi.click(function(){
+                    to_page(result.jsondata.pageInfo.pageNum +1);
+                });
+                lastPageLi.click(function(){
+                    to_page(result.jsondata.pageInfo.pages);
+                });
+            }
+
+            //添加首页和前一页 的提示
+            ul.append(firstPageLi).append(prePageLi);
+            //1,2，3遍历给ul中添加页码提示
+            $.each(result.jsondata.pageInfo.navigatepageNums,function(index,item){
+                var numLi = $("<li></li>").append($("<a></a>").append(item));
+                if(result.jsondata.pageInfo.pageNum === item){
+                    numLi.addClass("active");
                 }
-            },
-            error:function(){
-                alert("添加失败请检查数据格式后重试,多次添加不成功请联系系统管理员")
-            }
-        });
-    });
-
-
-    //查询
-    $("#student_search_btn").click(function(){
-        to_search_page(1);
-    });
-    function to_search_page(pn){
-        var cid=$("#cid_search_input").val();
-        var fid=$("#fid_search_input").val();
-        var cName=$("#cName_search_input").val();
-        var birthplace=$("#birthplace_search_input").val();
-        var nation=$("#nation_search_input").val();
-        var politicalStatus=$("#politicalStatus_search_input").val();
-        var status=$("#status_search_input").val();
-
-        console.log(nation);
-
-        $.ajax({
-            url:"students/search/"+pn,
-            data:{"cid":cid,
-                "fid":fid,
-                "cName":cName,
-                "birthplace":birthplace,
-                "nation":nation,
-                "politicalStatus":politicalStatus,
-                "status":status
-            },
-            type:"GET",
-            success:function(result){
-                console.log(result)
-                //1、解析并显示课程数据
-                build_student_table(result);
-                //2、解析并显示分页信息
-                build_page_info(result);
-                //3、解析显示分页条数据
-                build_page_nav_search(result);
-            }
-        });
-    }
-    function build_page_nav_search(result) {
-        //page_nav_area
-        $("#page_nav_area").empty();
-        var ul = $("<ul></ul>").addClass("pagination");
-
-        //构建元素
-        var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href", "#"));
-        var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;"));
-        if (result.jsondata.pageInfo.hasPreviousPage === false) {//没有上一页将第一页和上一页设为不可用
-            firstPageLi.addClass("disabled");
-            prePageLi.addClass("disabled");
-        } else {
-            //为元素添加点击翻页的事件
-            firstPageLi.click(function () {
-                to_search_page(1);
+                numLi.click(function(){
+                    to_page(item);
+                });
+                ul.append(numLi);
             });
-            prePageLi.click(function () {
-                to_search_page(result.extend.pageInfo.pageNum - 1);
-            });
-        }
-        var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;"));
-        var lastPageLi = $("<li></li>").append($("<a></a>").append("末页").attr("href","#"));
-        if(result.jsondata.pageInfo.hasNextPage === false){//没有下一页
-            nextPageLi.addClass("disabled");
-            lastPageLi.addClass("disabled");
-        }else{
-            nextPageLi.click(function(){
-                to_search_page(result.jsondata.pageInfo.pageNum +1);
-            });
-            lastPageLi.click(function(){
-                to_search_page(result.jsondata.pageInfo.pages);
-            });
+            //添加下一页和末页 的提示
+            ul.append(nextPageLi).append(lastPageLi);
+
+            //把ul加入到nav
+            var navEle = $("<nav></nav>").append(ul);
+            navEle.appendTo("#page_nav_area");
         }
 
-        //添加首页和前一页 的提示
-        ul.append(firstPageLi).append(prePageLi);
-        //1,2，3遍历给ul中添加页码提示
-        $.each(result.jsondata.pageInfo.navigatepageNums,function(index,item){
-            var numLi = $("<li></li>").append($("<a></a>").append(item));
-            if(result.jsondata.pageInfo.pageNum === item){
-                numLi.addClass("active");
-            }
-            numLi.click(function(){
-                to_search_page(item);
-            });
-            ul.append(numLi);
-        });
-        //添加下一页和末页 的提示
-        ul.append(nextPageLi).append(lastPageLi);
-
-        //把ul加入到nav
-        var navEle = $("<nav></nav>").append(ul);
-        navEle.appendTo("#page_nav_area");
-    }
-    //构建出生地
-    function build_page_Birthplace(result){
-        var birthplace =result.jsondata.birthplaceList;
-        $.each(birthplace,function(index,item){
-            $("#birthplace_update_input").append($("<option></option>").append(item.ch).attr("value",item.id));
-            $("#birthplace_insert_input").append($("<option></option>").append(item.ch).attr("value",item.id));
-            $("#birthplace_search_input").append($("<option></option>").append(item.ch).attr("value",item.id));
-        })
-    }
-    //构建民族
-    function build_page_Nation(result){
-        var nation =result.jsondata.nationList;
-        $.each(nation,function(){
-            $("#nation_update_input").append($("<option></option>").append(this.nation).attr("value",this.id));
-            $("#nation_insert_input").append($("<option></option>").append(this.nation).attr("value",this.id));
-            $("#nation_search_input").append($("<option></option>").append(this.nation).attr("value",this.id));
-        })
-    }
-    //构建政治面貌
-    function build_page_Political(result){
-        var political =result.jsondata.politicalList;
-        $.each(political,function(index,item){
-            $("#political_update_input").append($("<option></option>").append(item.political).attr("value",item.id));
-            $("#political_insert_input").append($("<option></option>").append(item.political).attr("value",item.id));
-            $("#politicalStatus_search_input").append($("<option></option>").append(item.political).attr("value",item.id));
-        })
-    }
-    //构建学籍状态
-    function build_page_Status(result){
-        var status =result.jsondata.statusList;
-        $.each(status,function(index,item){
-            var optionEle = $("<option></option>").append(item.status).attr("value",item.id);
-            $("#status_update_input").append($("<option></option>").append(item.status).attr("value",item.id));
-            $("#status_insert_input").append($("<option></option>").append(item.status).attr("value",item.id));
-            $("#status_search_input").append($("<option></option>").append(item.status).attr("value",item.id));
-        })
-    }
+//    //构建编辑新增模态框中的复选框
+//    function build_page_select(){
+//        $.ajax({
+//            url:"books/selectList",
+//            type:"GET",
+//            success:function(result){
+//                build_page_Birthplace(result);
+//                build_page_Nation(result);
+//                build_page_Political(result);
+//                build_page_Status(result);
+//            }
+//        })
+//    }
+//
+//    //点击编辑弹出编辑模态框
+//    $(document).on("click",".edit_btn",function(){
+//
+//        //2、查出学生信息显示在模态框
+//        getbook($(this).attr("edit-id"));
+//
+//        //3、把学生的id传递给模态框的更新按钮
+//        $("#book_update_btn").attr("edit-id",$(this).attr("edit-id"));
+//        $("#bookUpdateModal").modal({
+//            backdrop:"static"
+//        });
+//    });
+//
+//    //回显book信息
+//    function getbook(id){
+//        $.ajax({
+//            url:"books/"+id,
+//            type:"GET",
+//            dataType:"json",
+//            success:function(result){
+//                var bookData = result.jsondata.bookData;
+//                $("#cid_update_input").val(bookData.cid);
+//                $("#fid_update_input").val(bookData.fid);
+//                $("#cName_update_input").val(bookData.cName);
+//                $("#fName_update_input").val(bookData.fName);
+//                $("#lastName_update_input").val(bookData.lastName);
+//                $("#firstName_update_input").val(bookData.firstName);
+//                $("#bookUpdateModal input[name=gender]").val([bookData.gender]);
+//                $("#idNo_update_input").val(bookData.idNo);
+//                var birthday=new Date(bookData.birthday)
+//                $("#birthday_update_input").val(birthday.getFullYear()+"-"
+//                    +(birthday.getMonth()+1)+"-"
+//                    +birthday.getDate());
+//
+//                $("#birthplace_update_input").val(bookData.birthplace);
+//                $("#candidateNo_update_input").val(bookData.candidateNo);
+//                $("#nation_update_input").val(bookData.nation);
+//                $("#political_update_input").val(bookData.politicalStatus);
+//                $("#status_update_input").val(bookData.status);
+//                $("#rewardsPenalties_update_input").val(bookData.rewardsPenalties);
+//                $("#homeAddress_update_input").val(bookData.homeAddress);
+//                $("#homeTel_update_input").val(bookData.homeTel);
+//
+//            }
+//        });
+//    }
+//
+//    //点击保存更新
+//    $("#book_update_btn").click(function(){
+//
+//        $.ajax({
+//            url:"books/"+$(this).attr("edit-id"),
+//            type:"PUT",
+//            dataType:"json",
+//            data:$("#bookUpdateModal").find("form").serialize(),
+//            success:function(result){
+//                alert(result.msg);
+//                //1、关闭对话框
+//                $("#bookUpdateModal").modal("hide");
+//                //2、回到本页面
+//                to_search_page(currentPage);
+//            }
+//        });
+//    });
+//
+//    //删除
+//    $(document).on("click",".delete_btn",function(){
+//        //1、弹出是否确认删除对话框
+//        var bookid = $(this).attr("del-id");
+//        if(confirm("确认删除"+bookid+"的学生信息吗？此操作不可逆")){
+//            //确认，发送ajax请求删除即可
+//            $.ajax({
+//                url:"books/"+bookid,
+//                type:"DELETE",
+//                success:function(result){
+//                    alert(result.msg);
+//                    //回到本页
+//                    to_page(currentPage);
+//                },
+//                error:function(){
+//                    alert("删除失败请重试")
+//                }
+//            });
+//        }
+//    });
+//
+//    //点击新增按钮弹出模态框。
+//    $("#bookAdd").click(function(){
+//        //弹出模态框
+//        $("#bookInsertModal").modal({
+//            backdrop:"static"
+//        });
+//    });
+//
+//    //点击添加，保存新课程。
+//    $("#book_insert_btn").click(function(){
+//        console.log($("#bookInsertModal").find("form").serialize())
+//        //2、发送ajax请求保存员工
+//        $.ajax({
+//            url:"books",
+//            type:"POST",
+//            data:$("#bookInsertModal").find("form").serialize(),
+//            success:function(result){
+//                //alert(result.msg);
+//                if(result.code === 200){
+//                    alert("添加成功");
+//                    //1、关闭模态框
+//                    $("#bookInsertModal").modal('hide');
+//                    to_page(1);
+//                }
+//            },
+//            error:function(){
+//                alert("添加失败请检查数据格式后重试,多次添加不成功请联系系统管理员")
+//            }
+//        });
+//    });
+//
+//
+//    //查询
+//    $("#book_search_btn").click(function(){
+//        to_search_page(1);
+//    });
+//    function to_search_page(pn){
+//        var cid=$("#cid_search_input").val();
+//        var fid=$("#fid_search_input").val();
+//        var cName=$("#cName_search_input").val();
+//        var birthplace=$("#birthplace_search_input").val();
+//        var nation=$("#nation_search_input").val();
+//        var politicalStatus=$("#politicalStatus_search_input").val();
+//        var status=$("#status_search_input").val();
+//
+//        console.log(nation);
+//
+//        $.ajax({
+//            url:"books/search/"+pn,
+//            data:{"cid":cid,
+//                "fid":fid,
+//                "cName":cName,
+//                "birthplace":birthplace,
+//                "nation":nation,
+//                "politicalStatus":politicalStatus,
+//                "status":status
+//            },
+//            type:"GET",
+//            success:function(result){
+//                console.log(result)
+//                //1、解析并显示课程数据
+//                build_book_table(result);
+//                //2、解析并显示分页信息
+//                build_page_info(result);
+//                //3、解析显示分页条数据
+//                build_page_nav_search(result);
+//            }
+//        });
+//    }
+//    function build_page_nav_search(result) {
+//        //page_nav_area
+//        $("#page_nav_area").empty();
+//        var ul = $("<ul></ul>").addClass("pagination");
+//
+//        //构建元素
+//        var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href", "#"));
+//        var prePageLi = $("<li></li>").append($("<a></a>").append("&laquo;"));
+//        if (result.jsondata.pageInfo.hasPreviousPage === false) {//没有上一页将第一页和上一页设为不可用
+//            firstPageLi.addClass("disabled");
+//            prePageLi.addClass("disabled");
+//        } else {
+//            //为元素添加点击翻页的事件
+//            firstPageLi.click(function () {
+//                to_search_page(1);
+//            });
+//            prePageLi.click(function () {
+//                to_search_page(result.extend.pageInfo.pageNum - 1);
+//            });
+//        }
+//        var nextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;"));
+//        var lastPageLi = $("<li></li>").append($("<a></a>").append("末页").attr("href","#"));
+//        if(result.jsondata.pageInfo.hasNextPage === false){//没有下一页
+//            nextPageLi.addClass("disabled");
+//            lastPageLi.addClass("disabled");
+//        }else{
+//            nextPageLi.click(function(){
+//                to_search_page(result.jsondata.pageInfo.pageNum +1);
+//            });
+//            lastPageLi.click(function(){
+//                to_search_page(result.jsondata.pageInfo.pages);
+//            });
+//        }
+//
+//        //添加首页和前一页 的提示
+//        ul.append(firstPageLi).append(prePageLi);
+//        //1,2，3遍历给ul中添加页码提示
+//        $.each(result.jsondata.pageInfo.navigatepageNums,function(index,item){
+//            var numLi = $("<li></li>").append($("<a></a>").append(item));
+//            if(result.jsondata.pageInfo.pageNum === item){
+//                numLi.addClass("active");
+//            }
+//            numLi.click(function(){
+//                to_search_page(item);
+//            });
+//            ul.append(numLi);
+//        });
+//        //添加下一页和末页 的提示
+//        ul.append(nextPageLi).append(lastPageLi);
+//
+//        //把ul加入到nav
+//        var navEle = $("<nav></nav>").append(ul);
+//        navEle.appendTo("#page_nav_area");
+//    }
 </script>
 </body>
 </html>

@@ -3,7 +3,6 @@ package com.qihang;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
 //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
@@ -14,7 +13,8 @@ public class QihangOaApplication {
 		SpringApplication.run(QihangOaApplication.class, args);
 	}
 
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(QihangOaApplication.class);
-	}
+//	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+//		return application.sources(QihangOaApplication.class);
+//	}
+
 }

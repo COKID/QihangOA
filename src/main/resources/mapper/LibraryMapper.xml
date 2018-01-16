@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qihang.dao.LibraryMapper">
+  <resultMap id="BaseResultMap" type="com.qihang.model.Library">
+    <id column="BookName" jdbcType="VARCHAR" property="bookname" />
+    <result column="author" jdbcType="VARCHAR" property="author" />
+    <result column="publisher" jdbcType="VARCHAR" property="publisher" />
+    <result column="publish_date" jdbcType="VARCHAR" property="publishDate" />
+    <result column="total_num" jdbcType="VARCHAR" property="totalNum" />
+    <result column="price" jdbcType="VARCHAR" property="price" />
+    <result column="bill_num" jdbcType="VARCHAR" property="billNum" />
+    <result column="register_date" jdbcType="VARCHAR" property="registerDate" />
+    <result column="buy_people" jdbcType="VARCHAR" property="buyPeople" />
+    <result column="deal_people" jdbcType="VARCHAR" property="dealPeople" />
+    <result column="available" jdbcType="VARCHAR" property="available" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    BookName, author, publisher, publish_date, total_num, price, bill_num, register_date, 
+    buy_people, deal_people, available
+  </sql>
+  <select id="selectByExample" parameterType="com.qihang.model.LibraryExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from library
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from library
+    where BookName = #{bookname,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from library
+    where BookName = #{bookname,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qihang.model.LibraryExample">
+    delete from library
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qihang.model.Library">
+    insert into library (BookName, author, publisher, 
+      publish_date, total_num, price, 
+      bill_num, register_date, buy_people, 
+      deal_people, available)
+    values (#{bookname,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{publisher,jdbcType=VARCHAR}, 
+      #{publishDate,jdbcType=VARCHAR}, #{totalNum,jdbcType=VARCHAR}, #{price,jdbcType=VARCHAR}, 
+      #{billNum,jdbcType=VARCHAR}, #{registerDate,jdbcType=VARCHAR}, #{buyPeople,jdbcType=VARCHAR}, 
+      #{dealPeople,jdbcType=VARCHAR}, #{available,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qihang.model.Library">
+    insert into library
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bookname != null">
+        BookName,
+      </if>
+      <if test="author != null">
+        author,
+      </if>
+      <if test="publisher != null">
+        publisher,
+      </if>
+      <if test="publishDate != null">
+        publish_date,
+      </if>
+      <if test="totalNum != null">
+        total_num,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="billNum != null">
+        bill_num,
+      </if>
+      <if test="registerDate != null">
+        register_date,
+      </if>
+      <if test="buyPeople != null">
+        buy_people,
+      </if>
+      <if test="dealPeople != null">
+        deal_people,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bookname != null">
+        #{bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="author != null">
+        #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDate != null">
+        #{publishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null">
+        #{totalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="billNum != null">
+        #{billNum,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null">
+        #{registerDate,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPeople != null">
+        #{buyPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="dealPeople != null">
+        #{dealPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qihang.model.LibraryExample" resultType="java.lang.Long">
+    select count(*) from library
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update library
+    <set>
+      <if test="record.bookname != null">
+        BookName = #{record.bookname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.author != null">
+        author = #{record.author,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisher != null">
+        publisher = #{record.publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishDate != null">
+        publish_date = #{record.publishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalNum != null">
+        total_num = #{record.totalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null">
+        price = #{record.price,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billNum != null">
+        bill_num = #{record.billNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerDate != null">
+        register_date = #{record.registerDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyPeople != null">
+        buy_people = #{record.buyPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealPeople != null">
+        deal_people = #{record.dealPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.available != null">
+        available = #{record.available,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update library
+    set BookName = #{record.bookname,jdbcType=VARCHAR},
+      author = #{record.author,jdbcType=VARCHAR},
+      publisher = #{record.publisher,jdbcType=VARCHAR},
+      publish_date = #{record.publishDate,jdbcType=VARCHAR},
+      total_num = #{record.totalNum,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=VARCHAR},
+      bill_num = #{record.billNum,jdbcType=VARCHAR},
+      register_date = #{record.registerDate,jdbcType=VARCHAR},
+      buy_people = #{record.buyPeople,jdbcType=VARCHAR},
+      deal_people = #{record.dealPeople,jdbcType=VARCHAR},
+      available = #{record.available,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qihang.model.Library">
+    update library
+    <set>
+      <if test="author != null">
+        author = #{author,jdbcType=VARCHAR},
+      </if>
+      <if test="publisher != null">
+        publisher = #{publisher,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDate != null">
+        publish_date = #{publishDate,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNum != null">
+        total_num = #{totalNum,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=VARCHAR},
+      </if>
+      <if test="billNum != null">
+        bill_num = #{billNum,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null">
+        register_date = #{registerDate,jdbcType=VARCHAR},
+      </if>
+      <if test="buyPeople != null">
+        buy_people = #{buyPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="dealPeople != null">
+        deal_people = #{dealPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        available = #{available,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where BookName = #{bookname,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qihang.model.Library">
+    update library
+    set author = #{author,jdbcType=VARCHAR},
+      publisher = #{publisher,jdbcType=VARCHAR},
+      publish_date = #{publishDate,jdbcType=VARCHAR},
+      total_num = #{totalNum,jdbcType=VARCHAR},
+      price = #{price,jdbcType=VARCHAR},
+      bill_num = #{billNum,jdbcType=VARCHAR},
+      register_date = #{registerDate,jdbcType=VARCHAR},
+      buy_people = #{buyPeople,jdbcType=VARCHAR},
+      deal_people = #{dealPeople,jdbcType=VARCHAR},
+      available = #{available,jdbcType=VARCHAR}
+    where BookName = #{bookname,jdbcType=VARCHAR}
+  </update>
+</mapper>

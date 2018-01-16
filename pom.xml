@@ -92,11 +92,18 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!--引入pageHelper分页插件 -->
+		<!--<dependency>-->
+			<!--<groupId>com.github.pagehelper</groupId>-->
+			<!--<artifactId>pagehelper</artifactId>-->
+			<!--<version>5.0.0</version>-->
+		<!--</dependency>-->
+		<!-- https://mvnrepository.com/artifact/com.github.pagehelper/pagehelper-spring-boot-starter -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
-			<artifactId>pagehelper</artifactId>
-			<version>5.0.0</version>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.3</version>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.mybatis.generator/mybatis-generator-core -->
 		<dependency>
 			<groupId>org.mybatis.generator</groupId>
@@ -108,6 +115,7 @@
 			<artifactId>testng</artifactId>
 			<version>RELEASE</version>
 		</dependency>
+
 
 	</dependencies>
 
